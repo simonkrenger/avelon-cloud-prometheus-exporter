@@ -1,0 +1,16 @@
+version: "2.4"
+services:
+  avelon-exporter:
+    build:
+      context: ../
+    ports:
+      - "8080:8080"
+    environment:
+      DEVICE_LIST: "${DEVICES}"
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml:Z"

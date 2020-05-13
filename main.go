@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	fetchInterval = 60 * time.Second
+	fetchInterval = 60 * time.Minute
 
 	observedDevicesList []avelonDeviceMetrics
 )
@@ -76,7 +76,7 @@ func init() {
 				ConstLabels: prometheus.Labels{"activationcode": device.ActivationCode},
 			}),
 			PressureGauge: prometheus.NewGauge(prometheus.GaugeOpts{
-				Name:        "avelon_recoard_pressure_hpa",
+				Name:        "avelon_record_last_pressure_hpa",
 				Help:        "Latest air pressure measurement",
 				ConstLabels: prometheus.Labels{"activationcode": device.ActivationCode},
 			}),
@@ -112,7 +112,7 @@ func fetchAvelonData() {
 		for _, dev := range observedDevicesList {
 			info, err := dev.Device.FetchDeviceInfo()
 			if err != nil {
-				log.Fatalf("Fetching device information failed: '%v'", err)
+				log.Printf("Fetching device information failed: '%v'", err)
 				continue
 			}
 			dev.BatteryLevelGauge.Set(info.BatteryLevel)
@@ -121,7 +121,7 @@ func fetchAvelonData() {
 
 			records, err := dev.Device.FetchRecords()
 			if err != nil {
-				log.Fatalf("Fetching device records failed: '%v'", err)
+				log.Printf("Fetching device records failed: '%v'", err)
 				continue
 			}
 

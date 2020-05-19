@@ -146,6 +146,10 @@ func findLatestValueForType(records []avelon.AvelonRecordsResponse, info avelon.
 			id = dataPoints.ID
 		}
 	}
+	if id == 0 {
+		log.Printf("Warning: DatapointID for %s not found, returning 0.", t)
+		return 0
+	}
 
 	for _, dataPoints := range records {
 		if dataPoints.DataPointID == id {

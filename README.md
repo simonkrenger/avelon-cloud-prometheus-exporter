@@ -14,8 +14,8 @@ export DEVICE_LIST=ABCDE2F1BCJK65C0,ABCDE2F1BCJK65C1
 ./avelon-cloud-prometheus-exporter
 
 # Build and run the container
-docker build -t simonkrenger/avelon-cloud-prometheus-exporter:latest .
-docker run --rm -p8080:8080 -e DEVICE_LIST='ABCDE2F1BCJK65C0,ABCDE2F1BCJK65C1' simonkrenger/avelon-cloud-prometheus-exporter:latest
+docker build -t quay.io/simonkrenger/avelon-cloud-prometheus-exporter:latest .
+docker run --rm -p8080:8080 -e DEVICE_LIST='ABCDE2F1BCJK65C0,ABCDE2F1BCJK65C1' quay.io/simonkrenger/avelon-cloud-prometheus-exporter:latest
 ```
 
 The exporter is configured via the `DEVICE_LIST` environment variable, which is a comma-seperated list of device codes (Found in Avelon Cloud for your device).

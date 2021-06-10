@@ -135,7 +135,7 @@ func fetchAvelonData() {
 	}
 }
 
-func findLatestValueForType(records []avelon.AvelonRecordsResponse, info avelon.AvelonDeviceResponse, t string) float64 {
+func findLatestValueForType(records []avelon.AvelonRecordsResponse, info avelon.AvelonDeviceResponse, t string) (float64) {
 
 	var latestTime int64
 	var latestValue float64
